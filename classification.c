@@ -76,6 +76,15 @@ static void set_register(uint32_t reg_addr, uint8_t value)
   // }
 }
 
+static void enable_auto_exposure()
+{
+  set_register(0x2100, 0x1); // AE_CTRL
+  set_register(0x0205, 0x10); // ANALOG_GLOBAL_GAIN: 0x10 = 2x, 0x20 = 4x
+
+  // This is needed for the camera to actually update its registers.
+  set_register(0x0104, 0x1);
+}
+
 static void RunNetwork()
 {
   __PREFIX(CNN)(cameraBuffer, Output_1);
@@ -105,11 +114,8 @@ static void cam_handler(void *arg)
   cpxPrintToConsole(LOG_TO_CRTP, "Output: %s\n", classStr);
   cpxPrintToConsole(LOG_TO_CRTP, "Class Detected: %s\n", class_mapping[max_index]);
 
-  set_register(0x2100, 0x1); 
-  set_register(0x0205, 0x10); 
-  set_register(0x0104, 0x1);
-
   pi_camera_capture_async(&camera, cameraBuffer, CAM_WIDTH * CAM_HEIGHT, pi_task_callback(&task1, cam_handler, NULL));
+  enable_auto_exposure();
   pi_camera_control(&camera, PI_CAMERA_CMD_START, 0);
 }
 
@@ -252,6 +258,7 @@ int classification()
   set_register(0x0205, 0x10); 
   set_register(0x0104, 0x1);
   pi_camera_capture_async(&camera, cameraBuffer, CAM_WIDTH * CAM_HEIGHT, pi_task_callback(&task1, cam_handler, NULL));
+  enable_auto_exposure();
   pi_camera_control(&camera, PI_CAMERA_CMD_START, 0);
 
   while (1)
