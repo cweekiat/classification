@@ -1,7 +1,7 @@
 # classificaton
 Image Classification for AI-deck
 
-Download dataset from https://drive.google.com/file/d/1ivWifRBmhtBboeiR8gbmDOAUZ1jtPdtG/view?usp=drive_link
+Download dataset from [Roboflow](https://universe.roboflow.com/workspace-b5lim/safmc)
 
 Extract file into `data` folder. 
 
