@@ -1,7 +1,7 @@
 # AI-Deck Image Classification
 
 ## Dataset
-1. Download dataset from [Roboflow](https://universe.roboflow.com/workspace-b5lim/safmc)
+1. Download dataset from [Roboflow](https://universe.roboflow.com/workspace-b5lim/safmc_v2)
 2. Extract file into `data` folder.
 3. Folder structure:
    - `data/train/class1/`
@@ -23,7 +23,7 @@
 When the example is flashing, you should see the GAP8 LED blink fast, which is the bootloader. The example itself can be noticed by a slow blinking LED. You should also receive the detection output in the cfclient console.
 
 ## Custom Model 
-1. Download dataset from [Roboflow](https://universe.roboflow.com/workspace-b5lim/safmc).
+1. Download dataset from [Roboflow](https://universe.roboflow.com/workspace-b5lim/safmc_v2).
 2. Extract them in `aideck-gap8-examples/examples/ai/classification/`.
 3. Run `python3 train_classifier.py`.
 
