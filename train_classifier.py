@@ -42,7 +42,7 @@ def parse_args():
         "--dataset_path",
         metavar="dataset_path",
         help="path to dataset",
-        default="data/dataset",
+        default="data",
     )
     args.add_argument("--batch_size", dest="batch_size", type=int, default=16)
     args.add_argument(
@@ -106,7 +106,7 @@ if __name__ == "__main__":
         ),
         include_top=False,
         weights="imagenet",
-        alpha=1.0,
+        alpha=0.5,
     )
     base_model.trainable = False
 
@@ -143,7 +143,7 @@ if __name__ == "__main__":
     model.summary()
 
     print(
-        "Number of trainable weights = {}".format(len(model.trainable_weights))
+        "Number of trainable layers = {}".format(len(model.trainable_weights))
     )
 
     # Train the custom head
